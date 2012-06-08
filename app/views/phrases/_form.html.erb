@@ -1,0 +1,28 @@
+
+<%= form_for(Phrase.new) do |f| %>
+
+
+  <% @phrases.each do |one|%>
+  <% if one.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(one.errors.count, "error") %> prohibited this phrase from being saved:</h2>
+
+      <ul>
+        <% one.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <div class="field">
+      <%= f.label :text %><br />
+      <%= text_field_tag 'phrase[][text]', one.text%>
+    </div>
+  <% end %>
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
